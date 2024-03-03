@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="pageName=${'Restaurant'}">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+    <nav th:replace="~{fragments/user/user-panel}"></nav>
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-sm">
+                <div class="text-center d-flex justify-content-center align-items-center">
+                    <div th:replace="~{fragments/user/welcome}"></div>
+                    <div th:replace="~{fragments/user/shop-cart}"></div>
+                    <div th:replace="~{fragments/user/order}"></div>
+                    <div th:replace="~{fragments/user/proceed}"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

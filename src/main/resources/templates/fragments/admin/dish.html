@@ -1,0 +1,38 @@
+<div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;" th:if="${action} == 'dish'">
+    <h1 class="h3 font-weight-normal">Dish properties:</h1>
+    <form id="t_form2" th:action="@{|/admin/dishes/${dish.id}|}" method="post"></form>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Cost</th>
+            <th scope="col">TimeMs</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>[[${dish.id}]]</td>
+            <td>
+                <input type="text" form="t_form2" name="name" th:value="${dish.name}" placeholder="non blank string"/>
+            </td>
+            <td>
+                <input type="number" form="t_form2" name="quantity" th:value="${dish.quantity}" placeholder="non-negative num"/>
+            </td>
+            <td>
+                <input type="number" form="t_form2" name="cost" th:value="${dish.cost}" placeholder="positive num"/>
+            </td>
+            <td>
+                <input type="number" form="t_form2" name="timeMs" th:value="${dish.timeMs}" placeholder="non-negative num"/>
+            </td>
+            <td>
+                <input class="btn btn-primary" type="submit" form="t_form2" value="Update" />
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/dishes}" class="btn btn-dark">Back</a>
+    <a th:href="@{|/admin/dishes/${dish.id}?delete=true|}" class="btn btn-danger">Delete</a>
+</div>

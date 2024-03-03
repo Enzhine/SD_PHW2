@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="pageName=${'Error page'}">
+<head th:replace="~{fragments/head}"></head>
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;">
+            <div class="alert alert-warning">
+                <h4 class="alert-heading">[[${error}]]. Status-[[${status}]]</h4>
+                <hr th:if="${message != null}">
+                <p th:if="${message != null}">[[${message}]]</p>
+            </div>
+            <a class="btn btn-info" th:href="@{/menu}" role="button">Back to home page</a>
+        </div>
+    </div>
+    <div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

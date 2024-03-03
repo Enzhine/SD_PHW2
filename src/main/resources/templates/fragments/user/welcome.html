@@ -1,0 +1,23 @@
+<th:block th:unless="${action}">
+    <div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;" th:unless="${hasOrder}">
+        <h1 class="h3 font-weight-normal">You have not ordered anything yet!</h1>
+        <a th:href="@{/user/shop-cart}" class="btn btn-primary" th:unless="${hasCart}">Make order</a>
+        <a th:href="@{/user/shop-cart}" class="btn btn-primary" th:if="${hasCart}">Continue order</a>
+    </div>
+    <div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;" th:if="${hasOrder}">
+        <div th:if="${finished}">
+            <h1 class="h3 font-weight-normal">Your order is finished!</h1>
+            <a th:href="@{/user/proceed}" class="btn btn-primary">Proceed</a>
+        </div>
+        <div th:unless="${finished}">
+            <h1 class="h3 font-weight-normal">Your order status:</h1>
+            <div th:if="${!cooker.isBegan()}" class="alert alert-secondary">In queue...</div>
+            <div th:if="${cooker.isBegan()}" class="alert alert-success">Cooking</div>
+            <div class="progress mb-3">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" th:aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100" th:style="'width: '+${progress}+'%;'">[[${progress}]]%</div>
+            </div>
+            <a th:if="${!cooker.isBegan()}" th:href="@{/user/order}" class="btn btn-primary">Edit</a>
+            <a th:href="@{/user/order?delete=true}" class="btn btn-danger">Cancel order</a>
+        </div>
+    </div>
+</th:block>

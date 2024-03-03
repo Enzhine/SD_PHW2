@@ -1,0 +1,64 @@
+<div th:if="${action} == 'shop-cart'">
+    <h1 class="h3 font-weight-normal">Your shop-cart:</h1>
+    <div th:if="${addSuccess}" class="alert alert-success">Added!</div>
+    <div th:if="${addError}" class="alert alert-warning">Unable to add more!</div>
+    <div th:if="${remSuccess}" class="alert alert-success">Removed!</div>
+    <div th:if="${remError}" class="alert alert-warning">Unable to remove!</div>
+    <div th:if="${unexpectedChange}" class="alert alert-warning">Warning: something got unavailable!</div>
+    <div th:if="${emptyError}" class="alert alert-danger">Your cart is empty!</div>
+    <div th:if="${orderError}" class="alert alert-danger">Your order was not accepted!</div>
+    <form id="t_form" th:action="@{/user/shop-cart}" method="post"></form>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c: ${cart}">
+            <td th:text="${c.name}"></td>
+            <td th:text="${c.quantity}"></td>
+            <td>[[${c.cost}]] Rubles</td>
+            <td>
+                <a th:href="@{|/user/shop-cart/${c.id}?act=remall|}" class="btn btn-danger">Remove</a>
+            </td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>[[${totalCount}]]</th>
+            <th>[[${totalCost}]] Rubles</th>
+            <th>
+                <input class="btn btn-primary" type="submit" form="t_form" value="Order" th:disabled="${hasCart == false}"/>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <h1 class="h3 font-weight-normal">Restaurant menu:</h1>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dish: ${dishes}">
+            <td th:text="${dish.id}"></td>
+            <td th:text="${dish.name}"></td>
+            <td th:text="${dish.quantity}"></td>
+            <td>[[${dish.cost}]] Rubles</td>
+            <td>
+                <a th:href="@{|/user/shop-cart/${dish.id}?act=rem|}" class="btn btn-dark">-</a>
+                <a th:href="@{|/user/shop-cart/${dish.id}?act=add|}" class="btn btn-dark">+</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/user/}" class="btn btn-dark">Back</a>
+</div>

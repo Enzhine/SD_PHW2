@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="pageName=${'Admin panel'}">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+    <nav th:replace="~{fragments/admin/admin-panel}"></nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/admin/register}">Register user</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/admin/dishes}">Edit menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/admin/orders}">Orders list</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-sm">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div th:replace="~{fragments/admin/welcome}"></div>
+                    <form th:replace="~{fragments/admin/register}"></form>
+                    <div th:replace="~{fragments/admin/dishes}"></div>
+                    <div th:replace="~{fragments/admin/dish}"></div>
+                    <div th:replace="~{fragments/admin/orders}"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>

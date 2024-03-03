@@ -1,0 +1,53 @@
+<div th:if="${action} == 'proceed'">
+    <h1 class="h3 font-weight-normal">Your order:</h1>
+    <form id="t_form1" th:action="@{/user/proceed}" method="post"></form>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            <th scope="col">Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c: ${cart}">
+            <td th:text="${c.name}"></td>
+            <td th:text="${c.quantity}"></td>
+            <td>[[${c.cost}]] Rubles</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <th>[[${totalCount}]]</th>
+            <th>[[${totalCost}]] Rubles</th>
+        </tr>
+        </tbody>
+    </table>
+    <h1 class="h3 font-weight-normal">Please, give a rating:</h1>
+    <table class="table table-light">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Taste level</th>
+            <th scope="col">Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c: ${cart}">
+            <td th:text="${c.name}"></td>
+            <td>
+                <select class="form-control" th:id="'sel'+${c.id}" form="t_form1" th:name="'rate'+${c.id}">
+                    <option>5: Amazing</option>
+                    <option>4: Nice</option>
+                    <option>3: Ok</option>
+                    <option>2: Poor</option>
+                    <option>1: Awful</option>
+                </select>
+            </td>
+            <td>
+                <input class="form-control" type="text" th:id="'txt'+${c.id}" th:name="'comment'+${c.id}" form="t_form1" placeholder="Your comment"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <input class="btn btn-primary" type="submit" form="t_form1" value="Accept and pay"/>
+</div>

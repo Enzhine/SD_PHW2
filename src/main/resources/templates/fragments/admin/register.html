@@ -1,0 +1,21 @@
+<form class="rounded bg-light bg-gradient" style="padding: 20px 10px;" method="post" th:action="@{/admin/register}" th:if="${action} == 'register'">
+    <h1 class="h3 font-weight-normal">New user</h1>
+    <div th:if="${registerError}" class="alert alert-warning error">Username [[${registerError}]] is already taken!</div>
+    <div th:if="${registerSuccess}" class="alert alert-success">Created [[${registerSuccess}]]!</div>
+    <div class="form-group">
+        <label for="username">Unique username</label>
+        <input class="form-control" type="text" id="username" name="username" autofocus="autofocus" placeholder="username"/>
+    </div>
+    <div class="form-group">
+        <label for="username">Password</label>
+        <input class="form-control" type="password" id="password" name="password" placeholder="password"/>
+    </div>
+    <div class="form-group">
+        <label for="username">Role</label>
+        <select class="form-control" id="role" name="role">
+            <option>Customer</option>
+            <option>Admin</option>
+        </select>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Create" />
+</form>

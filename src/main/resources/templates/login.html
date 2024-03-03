@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="pageName=${'Login page'}">
+<head th:replace="~{fragments/head}">
+<body>
+    <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <form class="text-center rounded bg-light bg-gradient"  style="padding: 20px 10px;" th:unless="${loginAlready}" th:action="@{/login}" method="post">
+            <h1 class="h3 font-weight-normal">Please, authorize</h1>
+            <div th:if="${param.wrong}" class="alert alert-warning error">Wrong user or password</div>
+            <div class="form-group">
+                <input class="form-control" type="text" id="username" name="username" autofocus="autofocus" placeholder="username"/>
+                <input class="form-control" type="password" id="password" name="password" placeholder="password"/>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Log in" />
+        </form>
+        <div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;" th:if="${loginAlready}">
+            <h1 class="h3 font-weight-normal">Already logged in!</h1>
+            <a class="btn btn-info" th:href="@{/menu}" role="button">Back to home page</a>
+            <a class="btn btn-danger" th:href="@{/logout}" role="button">Logout</a>
+        </div>
+    </div>
+    <div th:replace="~{fragments/scripts}"></div>
+</body>
+</html>
