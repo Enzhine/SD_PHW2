@@ -1,39 +1,64 @@
 <div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;" th:if="${action} == 'orders'">
-    <h1 class="h3 font-weight-normal">All orders:</h1>
-    <table class="table table-light">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Dish name</th>
-            <th scope="col">Count</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Status</th>
-            <th scope="col">User</th>
-            <th scope="col">Rate</th>
-            <th scope="col">Comment</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="order: ${orders}">
-            <td th:text="${order.id}"></td>
-            <td th:text="${order.dishName}"></td>
-            <td th:text="${order.quantity}"></td>
-            <td th:text="${order.cost}"></td>
-            <td th:text="${order.status}"></td>
-            <td th:text="${order.userName}"></td>
-            <td th:text="${order.userRate}"></td>
-            <td th:text="${order.userComment}"></td>
-        </tr>
-        <tr>
-            <th scope="col">Total</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">[[${totalCost}]]</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </tbody>
-    </table>
+    <a href="/admin/orders?mode=popular" class="btn btn-dark">Popular</a>
+    <a href="/admin/orders?mode=all" class="btn btn-dark">All</a>
+    <div th:if="${mode} == 'all'">
+        <h1 class="h3 font-weight-normal">All orders:</h1>
+        <table class="table table-light">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Dish name</th>
+                <th scope="col">Count</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Status</th>
+                <th scope="col">User</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="col">Revenue</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">[[${totalCost}]]</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            <tr th:each="order: ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.dishName}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.cost}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.userName}"></td>
+                <td th:text="${order.userRate}"></td>
+                <td th:text="${order.userComment}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${mode} == 'popular'">
+        <h1 class="h3 font-weight-normal">Popular ones:</h1>
+        <table class="table table-light">
+            <thead>
+                <tr>
+                    <th scope="col">Dish name</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Total revenue</th>
+                    <th scope="col">Rates sum</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order: ${orders}">
+                <td th:text="${order.dishName}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td th:text="${order.cost}"></td>
+                <td th:text="${order.userRate}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

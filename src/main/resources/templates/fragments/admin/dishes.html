@@ -1,10 +1,10 @@
 <div class="text-center rounded bg-light bg-gradient" style="padding: 20px 10px;" th:if="${action} == 'dishes'">
     <h1 class="h3 font-weight-normal">Menu:</h1>
-    <div th:if="${findError}" class="alert alert-warning">Dish with id [[${findError}]] not exists!</div>
-    <div th:if="${createSuccess}" class="alert alert-success">Dish with id [[${createSuccess}]] created!</div>
-    <div th:if="${updateSuccess}" class="alert alert-success">Dish with id [[${updateSuccess}]] updated.</div>
-    <div th:if="${deleteSuccess}" class="alert alert-success">Dish with id [[${deleteSuccess}]] deleted.</div>
-    <div th:if="${inputError}" class="alert alert-warning">Wrong input properties!</div>
+    <div th:if="${param.findError}" class="alert alert-warning">Dish with id [[${param.findError}]] not exists!</div>
+    <div th:if="${param.createSuccess}" class="alert alert-success">Dish with id [[${param.createSuccess}]] created!</div>
+    <div th:if="${param.updateSuccess}" class="alert alert-success">Dish with id [[${param.updateSuccess}]] updated.</div>
+    <div th:if="${param.deleteSuccess}" class="alert alert-success">Dish with id [[${param.deleteSuccess}]] deleted.</div>
+    <div th:if="${param.inputError}" class="alert alert-warning">Wrong input properties!</div>
     <form id="t_form" th:action="@{/admin/dishes}" method="post"></form>
     <table class="table table-light">
         <thead>
